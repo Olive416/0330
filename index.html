@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 제이쿼리 응용 - 영상 활용한 내비게이션 구현 - 포카리</title>
+<style>
+*{margin:0px;padding:0px;}
+ol,ul,li{list-style:none;}
+a{text-decoration:none;color:#333;}
+body{
+    font-family:'맑은 고딕', arial, sans-serif;
+    font-size:12px;
+    color:#333;
+}
+header{
+    position:fixed;
+    top:0px;
+    left:0px;
+}
+h1{
+    padding:20px 0px 0px 20px;
+}
+h1 img{width:200px;}
+main{
+    width: 100%;
+    height:100vh;
+    background-image:url('./img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+section{
+    width:100%;height:100%;
+    display:flex;
+    justify-content: flex-end;
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index: 10;
+}
+section > article{
+    width:18%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+    transform:skewX(-10deg);/*기울기*/
+    border-left:1px solid #fff;
+}
+video{
+    height:100%;
+    opacity:0;
+}
+h2{
+    position:absolute;
+    top:3%;
+    left:50%;
+    color:#fff;
+    font-size:30px;
+    transform:translateX(-50%) skewX(10deg);
+}
+.bar{
+    background:rgba(255,255,255,.5);
+    width:80%;
+    height:0px;
+    position:absolute;
+    top:5%;
+    left:0px;
+    transform:translateY(-50);
+}
+h3{
+    position:absolute;
+    top:60%;
+    right:-500px;    
+}
+.detail{
+    position:absolute;width:60%;
+    right:-500px;
+    top:70%;
+    color:#fff;    
+}
+footer{
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    width:100%;
+    text-align:center;
+    line-height:40px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(function(){
+        
+        $('section article').mouseenter(function(){
+            $(this).stop().animate({'width':'35%'},500);
+            $(this).find('.bar').animate({'opacity':'1','height':'30px'},300);
+            $(this).find('.h3').animate({'right':'50px'},300);
+            $(this).find('.detail').animate({'right':'20px'},300);
+            $(this).find('video').animate({'opacity':'1'},300);
+            let v=$(this).find('video').get(0);
+            v.play();
+        });
+        $('section article').mouseleave(function(){
+            $(this).stop().animate({'width':'18%'},500);
+            $(this).find('.bar').animate({'opacity':'1','height':'30px'},300);
+            $(this).find('.h3').animate({'right':'50px'},300);
+            $(this).find('.detail').animate({'right':'20px'},300);
+            $(this).find('video').animate({'opacity':'0'},300);
+        });
+        $('section article').hover(function(){
+            
+        },function(){
+
+        });
+    });
+</script>
+</head>
+<body>
+<header>
+    <h1>
+        <a href="index.html" title="메인페이지로 바로가기">
+            <img src="./img/logo.png" alt="">
+        </a>
+    </h1>
+</header>
+
+<main>
+    <section>
+        <article>
+            <video autoplay muted loop>
+                <source src="./movie/ad1.mp4" type="video/mp4">
+            </video>
+            <h2>&#x007c; Mg+</h2>
+            <div class="bar"></div>
+            <h3>몸의 수분량은 어느 정도 일까?</h3><!-- 서브 타이틀 -->
+            <p class="detail">인간의 몸은 약 60%가 수분입니다. 체중 60kg인 사람의 경우 36리터 정도의 수분을 체내에 가지고 있습니다.</p>
+        </article>
+        <article>
+            <video autoplay muted loop>
+                <source src="./movie/ad2.mp4" type="video/mp4">
+            </video>
+            <h2>&#x007c; K+</h2>
+            <div class="bar"></div>
+            <h3>생명의 원천은 바다?</h3>
+            <p class="detail">약 46억년 전 지구 최초의 생명체는 고대의 바다 속에서 탄생되었습니다. 그리고 바다로부터 육지로 올라와 인간으로 진화하였습니다. 우리의 몸 속 수분이 이온을 포함한 바닷물과 닮았다고 하는 것이 바로 그 이유입니다.</p>
+        </article>
+        <article>
+            <video autoplay muted loop>
+                <source src="./movie/ad3.mp4" type="video/mp4">
+            </video>
+            <H2>&#x007c; Ca+</H2>
+            <div class="bar"></div>
+            <h3>1일의 수분 배출</h3>
+            <p class="detail">우리의 일상생활을 통해서 소변, 땀, 호흡으로 하루에 2.5리터 정도의 수분을 몸으로부터 읽어버립니다. 많은 땀을 흘릴 때에 갈증이 나는 것은 줄어든 몸 속 수분을 회복하려고 하는 우리 몸의 활동입니다.</p>
+        </article>
+        <article>
+            <video autoplay muted loop>
+                <source src="./movie/ad4.mp4" type="video/mp4">
+            </video>
+            <h2>&#x007c; Na+</h2>
+            <div class="bar"></div>
+            <h3>몸 속 수분의 역할</h3>
+		    <p class="detail">영양소를 몸의 구석구석 운반, 불필요한 노폐물을 몸 밖으로 배출, 체온 조절</p>
+        </article>
+    </section>
+</main>
+
+<footer>&copy;포카리스웨트 Allright reserved.</footer>
+</body>
+</html>
